@@ -1,0 +1,32 @@
+# Sample data (replace this with your actual data)
+titles = ['Movie1', 'Movie2', 'Movie3']
+years = [2000, 2010, 2015]
+runtimes = [120, 150, 110]
+imdb_ratings = [8.5, 9.0, 7.8]
+
+# 1. Decide on the target variable (IMDb rating)
+target_variable = imdb_ratings
+
+# 2. Decide on the features
+features = list(zip(years, runtimes))  # Combine features into tuples
+
+# 3. Analyse the dataset for patterns (Optional)
+
+# 4. Create your model (simple linear regression)
+w1, w2, b = 0.1, 0.01, 1.0  # Initialize weights and bias (replace with actual values)
+predictions = [w1 * year + w2 * runtime + b for year, runtime in features]
+
+# 5. Evaluate your model (calculate mean squared error)
+mse = sum((actual - pred) ** 2 for actual, pred in zip(target_variable, predictions)) / len(target_variable)
+print(f'Mean Squared Error: {mse}')
+
+# 6. Show results on a graph using matplotlib
+import matplotlib.pyplot as plt
+
+plt.scatter(years, imdb_ratings, color='black', label='Actual Ratings')
+plt.scatter(years, predictions, color='blue', label='Predicted Ratings')
+plt.xlabel('Year')
+plt.ylabel('IMDb Rating')
+plt.title('IMDb Rating Prediction')
+plt.legend()
+plt.show()
